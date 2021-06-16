@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US" ng-app="myApp">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="app.js"></script>
+  <script src="//unpkg.com/@uirouter/angularjs@1.0.5/release/angular-ui-router.js"></script>
+  <body>
+    <h3>Com http</h3>
+
+    <div ng-controller="showIt">
+      <button ng-click="myFunc()">Show stuff</button>
+      <h1>{{listaVazia}}</h1>
+      <div ng-show="showMe" ng-controller="buscarArrayController">
+        <h1>{{listaVazia}}</h1>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>País</th>
+            <th>Cidade</th>
+            <th>Acção</th>
+          </tr>
+          <tr ng-repeat="i in myData">
+            <td>{{i.name}}</td>
+            <td>{{i.pais}}</td>
+            <td>{{i.cidade}}</td>
+            <td><button ng-click="remove($index)">Apagar</button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
+
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 40%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>

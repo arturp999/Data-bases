@@ -1,0 +1,23 @@
+{
+   "dados":[
+    {"name":"Physics","marks":70},
+    {"name":"Chemistry","marks":80},
+    {"name":"Math","marks":65},
+    {"name":"English","marks":75},
+    {"name":"Hindi","marks":67}
+    ],
+    
+    "dados1":[
+        {"name":"Comercio Mineiro","pais":"Brazil","cidade":"São Paulo"},
+        {"name":"Bottom-Dollar Marketse","pais":"Canada","cidade":"Tsawassen"},
+        {"name":"Blondel pere et fils","pais":"France","cidade":"Strasbourg"},
+        {"name":"Bon app'","pais":"France","cidade":"Marseille"},
+        {"name":"Alfreds Futterkiste","pais":"Germany","cidade":"Berlin"},
+        {"name":"Cactus Comida para llevar","pais":"Argentina","cidade":"Buenos Aires"},
+        {"name":"Blauer See Delikatessen","pais":"Germany","cidade":"Mannheim"}
+
+    ],
+    "teste":[
+        
+    ]
+}

@@ -1,0 +1,47 @@
+1. Escreva uma pesquisa para encontrar todos os filmes do ano (“year”) 2014.
+	db.video_movieDetails.find({"year":2014}).pretty() 
+
+2. Escreva uma pesquisa para encontrar todos os filmes apenas do país (“countries”)
+Portugal.
+	db.video_movieDetails.find({"countries":"Portugal"}).pretty()  
+
+3. Escreva uma pesquisa para encontrar todos os filmes que tem o rating do imdb superior a
+9.
+	 db.video_movieDetails.find({"imdb.rating":{$gt:9}}).pretty()  
+
+4. Escreva uma pesquisa para encontrar todos os filmes que tem mais de 100 vitórias
+(“wins”) em prémios (“awards”) do actor “Javier Bardem”.
+
+	 db.video_movieDetails.find({"awards.wins":{$gt:100},"actors":"Javier Bardem"}).pretty()
+
+5. Escreva uma pesquisa para encontrar todos os filmes em que o actor “Brad Pitt” participa
+apresentando o nome (“title”) do filme e ano (“year”).
+
+	 db.video_movieDetails.find({"actors":"Brad Pitt"},{title:1,year:1}) 
+
+6. Escreva uma pesquisa para encontrar todos os filmes em que pelo menos um dos
+actores “Brad Pitt” ou “Angelina Jolie” participam, apresentando o nome do filme e
+actores.
+	db.video_movieDetails.find({$or:[{"actors":"Brad Pitt"},{"actors":"Angelina Jolie"}]},{title:1,year:1}).pretty() 
+
+7. Alterar o ano (“year”) de 2014 de um dos filmes para 2300.
+	db.video_movieDetails.updateOne({},{$set:{"year":2300}}) 
+
+8. Alterar o campo “title” para titulo de todos os filmes.
+	db.video_movieDetails.updateMany({},{$rename:{"title":"titulo"}}) 
+
+9. Inserir um filme na colecção com os dados que pretender. Apresentando duas formas.
+	db.video_movieDetails.insert( {"title":"A fuga dos Carloes", "year":2040})
+	db.video_movieDetails.insertMany( {"title":"A  Carloes", "year":2040})
+	
+10. Apagar todos os filmes do género (“genres”) “Action”.
+	db.video_movieDetails.deleteMany({"genres":"Action"})
+	db.video_movieDetails.remove({"genres":"Action"})
+
+11. Apagar todos os filmes com “rating” do “imdb” igual a 7.
+	  db.video_movieDetails.remove({"imdb.rating":{$eq:7}})         
+
+12. Substituir todas as informações de um filme por outras. Apresentando duas formas.
+	db.video_movieDetails.update({"titulo":"Hello World"},{"title":"Corona is Party Time"})
+	db.video_movieDetails.replaceOne({"titulo":"West Mom"},{"title":"O Carlos e Os Carecas"})             
+

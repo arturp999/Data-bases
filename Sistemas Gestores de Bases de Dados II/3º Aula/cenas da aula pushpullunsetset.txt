@@ -1,0 +1,71 @@
+db.pessoas.insertMany ([
+{	"_id":1,
+	"nome":"Magno",
+	"morada":[10,13,5]
+},
+{	"_id":2,
+	"nome":"Jorge",
+	"morada":[5]
+}
+])
+
+
+db.moradas.insertMany ([
+{	"_id":5,
+	"morada": "Rua do Carmo"
+},
+{	"_id":10,
+	"morada":"Caminho de Santo Antonio"
+},
+{	"_id":13,
+	"morada":"Penteada"
+}
+])
+
+db.pessoas.aggregate([{
+$lookup:{
+	from:"moradas",
+	localField:"morada",
+	foreignField:"_id",
+	as: "morada"
+}
+}]).pretty()
+
+db.moradas.aggregate([{
+$lookup:{
+	from:"pessoas",
+	localField:"_id",
+	foreignField:"morada",
+	as: "pessoas"
+}
+}]).pretty()
+
+> var x=db.samples_pokemon
+> x
+Pokemons.samples_pokemon
+> x.findOne();
+
+x.update({id:1},{$push:{"weaknesses":"Water"}}) 		//insere no array
+x.update({id:1},{$push:{"weaknesses":{$each:["Water","Wind"]}}}) 		//insere no array varios
+x.update({id:1},{$pull:{"weaknesses":"Water"}})		// retira do array
+x.update({id:1},{$pull:{"weaknesses":{$in:["Water","Wind"]}}}) //retira de varios
+x.update({id:1},{$addToSet: {"weaknesses":"Water"}}) // evita duplicados se ja existe nao deixa inserir
+
+x.update({id:1},{$push:{next_evolution: {num:"004", "name":"teste"}}}) 
+x.update({id:1},{$addToSet:{next_evolution: {num:"004"}}}) 
+x.update({id:1},{$pull:{next_evolution: {num:"004"}}}) 
+
+x.update({id:1},{$unset:{"next_evolution.$[].name": "" }}) 
+x.update({id:1, "next_evolution.num":"003"},{$unset:{"next_evolution.$.name": "" }}) 
+
+x.update({id:1, "next_evolution.num":"003"},{$set:{"next_evolution.$.name": "teste003" }}) 
+
+x.update(
+	{"id":133},
+	{$set:{"next_evolution.$[element].name":"teste"}},
+{
+	arrayFilters:[{$or: [{"element.num":"134"},
+	{"element.num":"136"}]}]
+}
+)
+
